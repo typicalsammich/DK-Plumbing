@@ -131,11 +131,25 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
-        <div
-          className="elevenlabs-widget-slot"
+        <div id="dk-elevenlabs-widget-mount" />
+        <script
           dangerouslySetInnerHTML={{
-            __html:
-              '<elevenlabs-convai class="dk-elevenlabs-widget dk-elevenlabs-desktop" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="compact" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai><elevenlabs-convai class="dk-elevenlabs-widget dk-elevenlabs-mobile" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="tiny" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai>',
+            __html: `
+              (function () {
+                var mount = document.getElementById("dk-elevenlabs-widget-mount");
+                if (!mount) return;
+
+                var mobile = window.matchMedia("(max-width: 760px)").matches;
+                var widget = document.createElement("elevenlabs-convai");
+                widget.className = "dk-elevenlabs-widget";
+                widget.setAttribute("agent-id", "agent_8701m156swwsev5rmp59p3g5fjmp");
+                widget.setAttribute("placement", "bottom-left");
+                widget.setAttribute("variant", mobile ? "tiny" : "compact");
+                widget.setAttribute("avatar-image-url", "/images/dk-plumbing-logo.jpg");
+                widget.setAttribute("action-text", "Talk to DK");
+                mount.appendChild(widget);
+              })();
+            `,
           }}
         />
         <script

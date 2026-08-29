@@ -3638,38 +3638,26 @@ p {
   }
 }
 
-/* ElevenLabs AI receptionist: compact on desktop, circular launcher on mobile. */
+/* ElevenLabs AI receptionist: one responsive widget only.
+   Using a single instance avoids ElevenLabs initializing a hidden duplicate on mobile. */
 .dk-elevenlabs-widget {
   position: fixed !important;
   z-index: 70 !important;
-  right: auto !important;
   left: 18px !important;
+  right: auto !important;
   bottom: 18px !important;
-}
-
-.dk-elevenlabs-desktop {
-  display: block;
   max-width: calc(100vw - 36px);
   --elevenlabs-convai-widget-width: min(360px, calc(100vw - 36px));
   --elevenlabs-convai-widget-height: min(540px, calc(100svh - 48px));
 }
 
-.dk-elevenlabs-mobile {
-  display: none;
-}
-
 @media (max-width: 760px) {
-  .dk-elevenlabs-desktop {
-    display: none !important;
-  }
-
   /* The AI receptionist replaces the old hard-stuck Call / Get Estimate bar. */
   .mobile-action-bar {
     display: none !important;
   }
 
-  .dk-elevenlabs-mobile {
-    display: block !important;
+  .dk-elevenlabs-widget {
     left: 14px !important;
     right: auto !important;
     bottom: calc(14px + env(safe-area-inset-bottom)) !important;
@@ -3681,7 +3669,6 @@ p {
     --elevenlabs-convai-widget-height: 64px;
   }
 
-  /* The footer no longer needs extra clearance for the removed action bar. */
   .footer-bottom {
     padding-bottom: calc(34px + env(safe-area-inset-bottom));
   }
