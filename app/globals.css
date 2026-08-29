@@ -3663,16 +3663,26 @@ p {
     display: none !important;
   }
 
+  /* The AI receptionist replaces the old hard-stuck Call / Get Estimate bar. */
+  .mobile-action-bar {
+    display: none !important;
+  }
+
   .dk-elevenlabs-mobile {
     display: block !important;
-    left: 10px !important;
+    left: 14px !important;
     right: auto !important;
-    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
-    width: 58px !important;
-    height: 58px !important;
-    max-width: 58px !important;
-    max-height: 58px !important;
-    --elevenlabs-convai-widget-width: 58px;
-    --elevenlabs-convai-widget-height: 58px;
+    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+    --elevenlabs-convai-widget-width: 64px;
+    --elevenlabs-convai-widget-height: 64px;
+  }
+
+  /* The footer no longer needs extra clearance for the removed action bar. */
+  .footer-bottom {
+    padding-bottom: calc(34px + env(safe-area-inset-bottom));
   }
 }

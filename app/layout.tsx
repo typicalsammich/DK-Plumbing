@@ -135,7 +135,7 @@ export default function RootLayout({
           className="elevenlabs-widget-slot"
           dangerouslySetInnerHTML={{
             __html:
-              '<elevenlabs-convai class="dk-elevenlabs-widget dk-elevenlabs-desktop" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="compact"></elevenlabs-convai><elevenlabs-convai class="dk-elevenlabs-widget dk-elevenlabs-mobile" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="tiny"></elevenlabs-convai>',
+              '<elevenlabs-convai class="dk-elevenlabs-widget dk-elevenlabs-desktop" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="compact" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai><elevenlabs-convai class="dk-elevenlabs-widget dk-elevenlabs-mobile" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="tiny" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai>',
           }}
         />
         <script
