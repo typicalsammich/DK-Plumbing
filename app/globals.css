@@ -3657,3 +3657,24 @@ p {
     padding-bottom: calc(34px + env(safe-area-inset-bottom));
   }
 }
+
+/* Force the ElevenLabs launcher to the true bottom-left.
+   Important: only control placement here — do not constrain width/height,
+   because the widget renders its own responsive UI inside Shadow DOM. */
+#dk-elevenlabs-widget {
+  position: fixed !important;
+  left: 18px !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: 18px !important;
+  z-index: 9999 !important;
+}
+
+@media (max-width: 760px) {
+  #dk-elevenlabs-widget {
+    left: 14px !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+}
