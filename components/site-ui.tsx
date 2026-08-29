@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -449,7 +449,13 @@ export function ServiceCapabilityShowcase({ service }: { service: Service }) {
 export function BeforeAfterComparison() {
   const [value, setValue] = useState(52);
   const [projectIndex, setProjectIndex] = useState(0);
+  const draggingComparison = useRef(false);
   const project = beforeAfterProjects[projectIndex];
+  const updateComparisonFromPointer = (event: React.PointerEvent<HTMLInputElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const nextValue = ((event.clientX - bounds.left) / bounds.width) * 100;
+    setValue(Math.min(96, Math.max(4, Math.round(nextValue))));
+  };
   const selectProject = (index: number) => {
     setProjectIndex(index);
     setValue(52);
@@ -491,6 +497,24 @@ export function BeforeAfterComparison() {
           step="1"
           value={value}
           onChange={(event) => setValue(Number(event.target.value))}
+          onPointerDown={(event) => {
+            draggingComparison.current = true;
+            event.currentTarget.setPointerCapture(event.pointerId);
+            updateComparisonFromPointer(event);
+          }}
+          onPointerMove={(event) => {
+            if (draggingComparison.current) updateComparisonFromPointer(event);
+          }}
+          onPointerUp={(event) => {
+            updateComparisonFromPointer(event);
+            draggingComparison.current = false;
+            if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+              event.currentTarget.releasePointerCapture(event.pointerId);
+            }
+          }}
+          onPointerCancel={() => {
+            draggingComparison.current = false;
+          }}
           aria-label={`Compare before and after: ${project.title}`}
         />
       </div>

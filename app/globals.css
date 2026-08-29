@@ -2610,7 +2610,7 @@ p {
 .comparison-handle::before, .comparison-handle::after { position: absolute; top: 50%; width: 9px; height: 9px; border-bottom: 2px solid white; border-left: 2px solid white; content: ""; }
 .comparison-handle::before { left: 11px; transform: translateY(-50%) rotate(45deg); }
 .comparison-handle::after { right: 11px; transform: translateY(-50%) rotate(225deg); }
-.comparison-range { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; margin: 0; appearance: none; background: transparent; cursor: ew-resize; touch-action: none; }
+.comparison-range { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; margin: 0; appearance: none; background: transparent; cursor: ew-resize; touch-action: none; -webkit-tap-highlight-color: transparent; }
 .comparison-range::-webkit-slider-runnable-track { height: 100%; background: transparent; }
 .comparison-range::-webkit-slider-thumb { width: 68px; height: 68px; appearance: none; border: 0; background: transparent; cursor: ew-resize; }
 .comparison-range::-moz-range-track { height: 100%; background: transparent; }
@@ -3279,7 +3279,10 @@ p {
   .capability-grid { grid-template-columns: 1fr; }
   .capability-grid button { min-height: 104px; }
   .capability-stage, .capability-stage img { min-height: 390px; }
-  .comparison-frame { height: 420px; }
+  .comparison-frame { height: min(112vw, 420px); min-height: 330px; border-radius: 12px; }
+  .comparison-handle { width: 62px; height: 62px; }
+  .comparison-range::-webkit-slider-thumb { width: 86px; height: 86px; }
+  .comparison-range::-moz-range-thumb { width: 86px; height: 86px; }
   .comparison-projects { grid-template-columns: 1fr; }
   .comparison-projects button { grid-template-columns: 32px 1fr; min-height: 54px; }
   .comparison-control { grid-template-columns: 1fr 42px auto 42px; }
