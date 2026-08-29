@@ -3638,33 +3638,22 @@ p {
   }
 }
 
-/* ElevenLabs AI receptionist — deliberately minimal.
-   The widget itself is the fixed element, matching ElevenLabs' documented embed pattern. */
-#dk-elevenlabs-widget {
-  position: fixed !important;
-  left: 18px !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: 18px !important;
-  z-index: 2147483000 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+/* ElevenLabs AI receptionist.
+   Let the ElevenLabs widget use the placement saved in the agent dashboard.
+   Do not force dimensions/position on the custom element because its UI is
+   rendered internally and can be clipped on mobile. */
+#dk-elevenlabs-widget-mount {
+  position: relative;
+  z-index: 70;
 }
 
 @media (max-width: 760px) {
+  /* The AI receptionist replaces the old hard-stuck Call / Get Estimate bar. */
   .mobile-action-bar {
     display: none !important;
   }
 
   .footer-bottom {
     padding-bottom: calc(34px + env(safe-area-inset-bottom));
-  }
-
-  #dk-elevenlabs-widget {
-    left: 12px !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: calc(12px + env(safe-area-inset-bottom)) !important;
   }
 }
