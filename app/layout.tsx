@@ -131,23 +131,30 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
-        <div id="dk-elevenlabs-widget-mount" />
+        <div
+          id="dk-elevenlabs-widget-mount"
+          dangerouslySetInnerHTML={{
+            __html:
+              '<elevenlabs-convai id="dk-elevenlabs-widget" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai>',
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
-                var mount = document.getElementById("dk-elevenlabs-widget-mount");
-                if (!mount) return;
+                var widget = document.getElementById("dk-elevenlabs-widget");
+                if (!widget) return;
 
-                var mobile = window.matchMedia("(max-width: 760px)").matches;
-                var widget = document.createElement("elevenlabs-convai");
-                widget.className = "dk-elevenlabs-widget";
-                widget.setAttribute("agent-id", "agent_8701m156swwsev5rmp59p3g5fjmp");
-                widget.setAttribute("placement", "bottom-left");
-                widget.setAttribute("variant", mobile ? "tiny" : "compact");
-                widget.setAttribute("avatar-image-url", "/images/dk-plumbing-logo.jpg");
-                widget.setAttribute("action-text", "Talk to DK");
-                mount.appendChild(widget);
+                function syncWidgetVariant() {
+                  widget.setAttribute(
+                    "variant",
+                    window.matchMedia("(max-width: 760px)").matches ? "tiny" : "compact"
+                  );
+                }
+
+                syncWidgetVariant();
+                var media = window.matchMedia("(max-width: 760px)");
+                if (media.addEventListener) media.addEventListener("change", syncWidgetVariant);
               })();
             `,
           }}

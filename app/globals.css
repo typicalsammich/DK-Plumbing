@@ -3638,35 +3638,19 @@ p {
   }
 }
 
-/* ElevenLabs AI receptionist: one responsive widget only.
-   Using a single instance avoids ElevenLabs initializing a hidden duplicate on mobile. */
-.dk-elevenlabs-widget {
-  position: fixed !important;
-  z-index: 70 !important;
-  left: 18px !important;
-  right: auto !important;
-  bottom: 18px !important;
-  max-width: calc(100vw - 36px);
-  --elevenlabs-convai-widget-width: min(360px, calc(100vw - 36px));
-  --elevenlabs-convai-widget-height: min(540px, calc(100svh - 48px));
+/* ElevenLabs AI receptionist.
+   Let the ElevenLabs widget use the placement saved in the agent dashboard.
+   Do not force dimensions/position on the custom element because its UI is
+   rendered internally and can be clipped on mobile. */
+#dk-elevenlabs-widget-mount {
+  position: relative;
+  z-index: 70;
 }
 
 @media (max-width: 760px) {
   /* The AI receptionist replaces the old hard-stuck Call / Get Estimate bar. */
   .mobile-action-bar {
     display: none !important;
-  }
-
-  .dk-elevenlabs-widget {
-    left: 14px !important;
-    right: auto !important;
-    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
-    width: 64px !important;
-    height: 64px !important;
-    max-width: 64px !important;
-    max-height: 64px !important;
-    --elevenlabs-convai-widget-width: 64px;
-    --elevenlabs-convai-widget-height: 64px;
   }
 
   .footer-bottom {
