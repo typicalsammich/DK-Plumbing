@@ -131,6 +131,18 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <div
+          className="elevenlabs-widget-slot"
+          dangerouslySetInnerHTML={{
+            __html:
+              '<elevenlabs-convai class="dk-elevenlabs-widget" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" placement="bottom-left" variant="compact"></elevenlabs-convai>',
+          }}
+        />
+        <script
+          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+          async
+          type="text/javascript"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

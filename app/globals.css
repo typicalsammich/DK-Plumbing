@@ -3637,3 +3637,27 @@ p {
     height: 230px;
   }
 }
+
+/* ElevenLabs AI receptionist: bottom-left on desktop and safely above the mobile action bar. */
+.dk-elevenlabs-widget {
+  position: fixed !important;
+  z-index: 70 !important;
+  right: auto !important;
+  bottom: 18px !important;
+  left: 18px !important;
+  max-width: calc(100vw - 36px);
+  --elevenlabs-convai-widget-width: min(360px, calc(100vw - 36px));
+  --elevenlabs-convai-widget-height: min(540px, calc(100svh - 48px));
+}
+
+@media (max-width: 760px) {
+  .dk-elevenlabs-widget {
+    right: auto !important;
+    bottom: calc(78px + env(safe-area-inset-bottom)) !important;
+    left: 12px !important;
+    max-width: calc(100vw - 24px);
+    --elevenlabs-convai-widget-width: min(330px, calc(100vw - 24px));
+    --elevenlabs-convai-widget-height: min(430px, calc(100svh - 160px));
+  }
+}
+
