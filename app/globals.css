@@ -3639,16 +3639,32 @@ p {
 }
 
 /* ElevenLabs AI receptionist.
-   Let the ElevenLabs widget use the placement saved in the agent dashboard.
-   Do not force dimensions/position on the custom element because its UI is
-   rendered internally and can be clipped on mobile. */
+   One persistent widget instance. On iPhone, account for Safari's dynamic
+   bottom browser chrome so the launcher cannot slide behind the toolbar. */
+:root {
+  --dk-browser-bottom-offset: 0px;
+}
+
 #dk-elevenlabs-widget-mount {
   position: relative;
-  z-index: 70;
+  z-index: 10000;
+}
+
+#dk-elevenlabs-widget {
+  display: block !important;
+  position: fixed !important;
+  left: 18px !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: 18px !important;
+  z-index: 2147483000 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 @media (max-width: 760px) {
-  /* The AI receptionist replaces the old hard-stuck Call / Get Estimate bar. */
+  /* The AI receptionist replaces the old sticky Call / Get Estimate bar. */
   .mobile-action-bar {
     display: none !important;
   }
@@ -3656,25 +3672,13 @@ p {
   .footer-bottom {
     padding-bottom: calc(34px + env(safe-area-inset-bottom));
   }
-}
 
-/* Force the ElevenLabs launcher to the true bottom-left.
-   Important: only control placement here — do not constrain width/height,
-   because the widget renders its own responsive UI inside Shadow DOM. */
-#dk-elevenlabs-widget {
-  position: fixed !important;
-  left: 18px !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: 18px !important;
-  z-index: 9999 !important;
-}
-
-@media (max-width: 760px) {
   #dk-elevenlabs-widget {
     left: 14px !important;
     right: auto !important;
     top: auto !important;
-    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    bottom: calc(
+      14px + env(safe-area-inset-bottom) + var(--dk-browser-bottom-offset, 0px)
+    ) !important;
   }
 }

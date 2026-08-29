@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { business, cities, specialtySearches } from "@/lib/site-data";
 import "./globals.css";
+import ElevenLabsWidget from "@/components/elevenlabs-widget";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dkplumbingandheatingco.com"),
@@ -131,39 +132,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
-        <div
-          id="dk-elevenlabs-widget-mount"
-          dangerouslySetInnerHTML={{
-            __html:
-              '<elevenlabs-convai id="dk-elevenlabs-widget" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai>',
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function () {
-                var widget = document.getElementById("dk-elevenlabs-widget");
-                if (!widget) return;
-
-                function syncWidgetVariant() {
-                  widget.setAttribute(
-                    "variant",
-                    window.matchMedia("(max-width: 760px)").matches ? "tiny" : "compact"
-                  );
-                }
-
-                syncWidgetVariant();
-                var media = window.matchMedia("(max-width: 760px)");
-                if (media.addEventListener) media.addEventListener("change", syncWidgetVariant);
-              })();
-            `,
-          }}
-        />
-        <script
-          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-          async
-          type="text/javascript"
-        />
+        <ElevenLabsWidget />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
