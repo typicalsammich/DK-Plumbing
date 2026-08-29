@@ -30,5 +30,13 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "worker", "db", "examples", "dist", ".sites-runtime"]
+  "exclude": [
+  "node_modules",
+  "worker",
+  "db",
+  "examples",
+  "dist",
+  ".sites-runtime",
+  "vite.config.ts"
+]
 }
