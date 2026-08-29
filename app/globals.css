@@ -3638,26 +3638,41 @@ p {
   }
 }
 
-/* ElevenLabs AI receptionist: bottom-left on desktop and safely above the mobile action bar. */
+/* ElevenLabs AI receptionist: compact on desktop, circular launcher on mobile. */
 .dk-elevenlabs-widget {
   position: fixed !important;
   z-index: 70 !important;
   right: auto !important;
-  bottom: 18px !important;
   left: 18px !important;
+  bottom: 18px !important;
+}
+
+.dk-elevenlabs-desktop {
+  display: block;
   max-width: calc(100vw - 36px);
   --elevenlabs-convai-widget-width: min(360px, calc(100vw - 36px));
   --elevenlabs-convai-widget-height: min(540px, calc(100svh - 48px));
 }
 
-@media (max-width: 760px) {
-  .dk-elevenlabs-widget {
-    right: auto !important;
-    bottom: calc(78px + env(safe-area-inset-bottom)) !important;
-    left: 12px !important;
-    max-width: calc(100vw - 24px);
-    --elevenlabs-convai-widget-width: min(330px, calc(100vw - 24px));
-    --elevenlabs-convai-widget-height: min(430px, calc(100svh - 160px));
-  }
+.dk-elevenlabs-mobile {
+  display: none;
 }
 
+@media (max-width: 760px) {
+  .dk-elevenlabs-desktop {
+    display: none !important;
+  }
+
+  .dk-elevenlabs-mobile {
+    display: block !important;
+    left: 10px !important;
+    right: auto !important;
+    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+    width: 58px !important;
+    height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+    --elevenlabs-convai-widget-width: 58px;
+    --elevenlabs-convai-widget-height: 58px;
+  }
+}
