@@ -3638,42 +3638,21 @@ p {
   }
 }
 
-/* ElevenLabs AI receptionist.
-   The OUTER shell owns viewport positioning. The ElevenLabs custom element
-   stays in normal flow inside that fixed shell so it cannot jump to a
-   dashboard/default top-left position or scroll away with page content. */
-#dk-elevenlabs-widget-shell {
+/* ElevenLabs AI receptionist — deliberately minimal.
+   The widget itself is the fixed element, matching ElevenLabs' documented embed pattern. */
+#dk-elevenlabs-widget {
   position: fixed !important;
   left: 18px !important;
   right: auto !important;
   top: auto !important;
   bottom: 18px !important;
   z-index: 2147483000 !important;
-  width: max-content;
-  height: max-content;
-  max-width: calc(100vw - 36px);
-  pointer-events: none;
-  isolation: isolate;
-}
-
-#dk-elevenlabs-widget-shell > elevenlabs-convai,
-#dk-elevenlabs-widget {
-  position: static !important;
-  inset: auto !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: auto !important;
-  margin: 0 !important;
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  pointer-events: auto !important;
-  transform: none !important;
 }
 
 @media (max-width: 760px) {
-  /* The AI receptionist replaces the old sticky Call / Get Estimate bar. */
   .mobile-action-bar {
     display: none !important;
   }
@@ -3682,9 +3661,10 @@ p {
     padding-bottom: calc(34px + env(safe-area-inset-bottom));
   }
 
-  #dk-elevenlabs-widget-shell {
+  #dk-elevenlabs-widget {
     left: 12px !important;
+    right: auto !important;
+    top: auto !important;
     bottom: calc(12px + env(safe-area-inset-bottom)) !important;
-    max-width: calc(100vw - 24px);
   }
 }

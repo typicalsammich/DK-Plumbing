@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { business, cities, specialtySearches } from "@/lib/site-data";
 import "./globals.css";
-import ElevenLabsWidget from "@/components/elevenlabs-widget";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dkplumbingandheatingco.com"),
@@ -132,7 +131,16 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
-        <ElevenLabsWidget />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: '<elevenlabs-convai id="dk-elevenlabs-widget" agent-id="agent_8701m156swwsev5rmp59p3g5fjmp" variant="tiny" dismissible="false" avatar-image-url="/images/dk-plumbing-logo.jpg" action-text="Talk to DK"></elevenlabs-convai>',
+          }}
+        />
+        <script
+          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+          async
+          type="text/javascript"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
